@@ -31,7 +31,7 @@ while True:
     message['body'] = "Hello, World"
     message['now']  = time.strftime('%y-%m-%d %H:%M:%S')
     message['thing_name'] = args.thing_name
-    message['component_version'] = '1.0.2'
+    message['component_version'] = '1.0.3'
 
     request = PublishToIoTCoreRequest()
     request.topic_name = topic
