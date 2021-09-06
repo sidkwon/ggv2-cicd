@@ -4,6 +4,8 @@ phases:
   install:
     commands:
       - echo Install started on `date`
+      - sudo apt update
+      - sudo apt install jq
   build:
     commands:
       - echo Build started on `date`
