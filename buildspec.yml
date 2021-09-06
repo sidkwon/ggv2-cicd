@@ -14,8 +14,8 @@ phases:
     commands:
       - echo Build started on `date`
       # - echo `pwd`
-      - ls -lat artifacts
-      - ls -lat artifacts/com.annakie.Publisher-1.0.0-cloud.json
+      # - ls -lat recipes
+      - ls -lat recipes/com.annakie.Publisher-1.0.0-cloud.json
       - aws greengrassv2 create-component-version --inline-recipe fileb://recipe/com.annakie.Publisher-1.0.0-cloud.json --region $AWS_REGION
   post_build:
     commands:
