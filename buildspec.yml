@@ -3,13 +3,13 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo install phases...
+      - echo Install started on `date`
   build:
     commands:
-      - echo build phases...
+      - echo Build started on `date`
   post_build:
     commands:
-      - echo post_build phases...
+      - echo Post_build started on `date`
 
 artifacts:
   files:
