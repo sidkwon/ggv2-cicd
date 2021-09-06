@@ -8,6 +8,8 @@ phases:
   install:
     commands:
       - echo Install started on `date`
+      - echo $AWS_REGION
+      - echo $AWS_DEFAULT_REGION
       # - apt update
       # - apt install jq
   build:
