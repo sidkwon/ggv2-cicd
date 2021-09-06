@@ -32,43 +32,43 @@ for artifact in artifacts:
                                      os.path.join('artifacts', component_name, component_version, artifact)
                                      )
 
-# TODO: Create component version
-# recipe_file = os.path.join('recipes', component_name + '-' + component_version + '.json')
-
-# with open(recipe_file, 'r') as recipe:
-#     recipe_bytes = recipe.read().encode()
-
-# response = ggv2_client.create_component_version(
-#     inlineRecipe=recipe_bytes
-# )
-
-# print(response)
-
 # TODO: Get deployment
 deployments_response = ggv2_client.list_deployments(
-    historyFilter='ALL' # ALL|LATEST_ONLY
+    historyFilter='LATEST_ONLY' # ALL|LATEST_ONLY
 )
-print(deployments_response['deployments'])
 
-# for deployment in deployments_response['deployments']:
-#     if deployment['deploymentName'] == deployment_name:
-#         target_arn = deployment['targetArn']
+for deployment in deployments_response['deployments']:
+    if deployment['deploymentName'] == deployment_name:
+        target_arn = deployment['targetArn']
 
-#         response = ggv2_client.get_deployment(
-#             deploymentId = deployment['deploymentId']
-#         )
+        response = ggv2_client.get_deployment(
+            deploymentId = deployment['deploymentId']
+        )
         
-#         components = response['components']
-#         components[component_name]['componentVersion'] = component_version
-#         deploymentPolicies = response['deploymentPolicies']
-#         iotJobConfiguration = response['iotJobConfiguration']
+        components = response['components']
         
-#         response = ggv2_client.create_deployment(
-#             deploymentName = deployment_name,
-#             targetArn = target_arn,
-#             components = components,
-#             deploymentPolicies = deploymentPolicies,
-#             iotJobConfiguration = iotJobConfiguration
-#         )
+        # If new component version is greater than existing component version, create component version
+        if components[component_name]['componentVersion'] < component_version:
+            recipe_file = os.path.join('recipes', component_name + '-' + component_version + '.json')
+            
+            with open(recipe_file, 'r') as recipe:
+                recipe_bytes = recipe.read().encode()
+            
+            ggv2_client.create_component_version(
+                inlineRecipe=recipe_bytes
+            )
+            
+        # Create deployment
+        components[component_name]['componentVersion'] = component_version
+        deploymentPolicies = response['deploymentPolicies']
+        iotJobConfiguration = response['iotJobConfiguration']
         
-#         print(response)
+        response = ggv2_client.create_deployment(
+            deploymentName = deployment_name,
+            targetArn = target_arn,
+            components = components,
+            deploymentPolicies = deploymentPolicies,
+            iotJobConfiguration = iotJobConfiguration
+        )
+        
+        print(response)

@@ -1,7 +1,7 @@
 {
     "Component": {
         "ComponentName": "com.annakie.Publisher",
-        "ComponentVersion": "1.0.2"
+        "ComponentVersion": "1.0.4"
     },
     "Deployment": {
         "DeploymentName": "sinjoonk-ggv2"
