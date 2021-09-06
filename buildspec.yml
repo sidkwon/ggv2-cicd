@@ -11,6 +11,6 @@ phases:
     commands:
       - echo Post_build started on `date`
 
-artifacts:
-  files:
-    - target/messageUtil-1.0.jar
+# artifacts:
+#   files:
+#     - target/messageUtil-1.0.jar
