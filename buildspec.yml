@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    REGION: "my-region"
+
 phases:
   install:
     commands:
@@ -12,7 +16,7 @@ phases:
       # - echo `pwd`
       - ls -lat artifacts
       - ls -lat artifacts/com.annakie.Publisher-1.0.0-cloud.json
-      - aws greengrassv2 create-component-version --inline-recipe fileb://artifacts/com.annakie.Publisher-1.0.0-cloud.json --region us-east-1
+      - aws greengrassv2 create-component-version --inline-recipe fileb://recipe/com.annakie.Publisher-1.0.0-cloud.json --region $AWS_REGION
   post_build:
     commands:
       - echo Post_build started on `date`
