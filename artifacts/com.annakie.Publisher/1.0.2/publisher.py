@@ -20,7 +20,7 @@ ipc_client = awsiot.greengrasscoreipc.connect()
                     
 topic = "sinjoonk/{}/topic".format(thing_name)
 # topic = "sinjoonk/sinjoonk-ggv2-core/topic"
-print('=============================================================')
+print('=========================================================')
 print("topic: {}".format(topic))
 
 qos = QOS.AT_LEAST_ONCE
