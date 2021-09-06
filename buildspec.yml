@@ -17,8 +17,9 @@ phases:
       - echo Build started on `date`
       # - echo `pwd`
       # - ls -lat recipes
-      - ls -lat recipes/com.annakie.Publisher-1.0.0-cloud.json
-      - aws greengrassv2 create-component-version --inline-recipe fileb://recipes/com.annakie.Publisher-1.0.0-cloud.json --region $AWS_REGION
+      # - ls -lat recipes/com.annakie.Publisher-1.0.0-cloud.json
+      # - aws greengrassv2 create-component-version --inline-recipe fileb://recipes/com.annakie.Publisher-1.0.0-cloud.json --region $AWS_REGION
+      - python3 ggv2_deploy.py
   post_build:
     commands:
       - echo Post_build started on `date`

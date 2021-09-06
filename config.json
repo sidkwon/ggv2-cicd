@@ -1,0 +1,10 @@
+{
+    "Component": {
+        "ComponentName": "com.annakie.Publisher",
+        "ComponentVersion": "1.0.1"
+    },
+    "Deployment": {
+        "DeploymentName": "sinjoonk-ggv2",
+        "TargetArn": "arn:aws:iot:us-east-1:889750940888:thinggroup/sinjoonk-ggv2-thing-group"
+    }
+}
