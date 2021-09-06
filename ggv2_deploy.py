@@ -9,8 +9,6 @@ with open('./config.json', 'r') as f:
 component_name = configs['Component']['ComponentName']
 component_version = configs['Component']['ComponentVersion']
 deployment_name = configs['Deployment']['DeploymentName']
-target_arn = configs['Deployment']['TargetArn']
-# print(component_name, component_version)
 
 account_number = boto3.client('sts').get_caller_identity().get('Account')
 region_name = boto3.Session().region_name
@@ -46,33 +44,31 @@ response = ggv2_client.create_component_version(
 
 print(response)
 
-# TODO: Create depoloyment
-response = ggv2_client.create_deployment(
-    deploymentName = deployment_name,
-    targetArn = target_arn,
-    components = {
-        "aws.greengrass.Cli": {
-            "componentVersion": "2.4.0"
-        },
-        "aws.greengrass.Nucleus": {
-            "componentVersion": "2.4.0"
-        },
-        component_name: {
-            "componentVersion": component_version
-        },
-        "com.annakie.Subscriber": {
-            "componentVersion": "1.0.0"
-        }
-    },
-    deploymentPolicies = {
-        "failureHandlingPolicy": "DO_NOTHING",
-        "componentUpdatePolicy": {
-            "timeoutInSeconds": 60,
-            "action": "NOTIFY_COMPONENTS"
-        },
-        "configurationValidationPolicy": {
-            "timeoutInSeconds": 60
-        }
-    },
-    iotJobConfiguration = {}
+# TODO: Get deployment
+deployments_response = ggv2_client.list_deployments(
+    historyFilter='LATEST_ONLY'
 )
+# print(deployments_response['deployments'])
+
+for deployment in deployments_response['deployments']:
+    if deployment['deploymentName'] == deployment_name:
+        target_arn = deployment['targetArn']
+
+        response = ggv2_client.get_deployment(
+            deploymentId = deployment['deploymentId']
+        )
+        
+        components = response['components']
+        components[component_name]['componentVersion'] = component_version
+        deploymentPolicies = response['deploymentPolicies']
+        iotJobConfiguration = response['iotJobConfiguration']
+        
+        response = ggv2_client.create_deployment(
+            deploymentName = deployment_name,
+            targetArn = target_arn,
+            components = components,
+            deploymentPolicies = deploymentPolicies,
+            iotJobConfiguration = iotJobConfiguration
+        )
+        
+        print(response)

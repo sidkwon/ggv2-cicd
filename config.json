@@ -4,7 +4,6 @@
         "ComponentVersion": "1.0.3"
     },
     "Deployment": {
-        "DeploymentName": "sinjoonk-ggv2",
-        "TargetArn": "arn:aws:iot:us-east-1:889750940888:thinggroup/sinjoonk-ggv2-thing-group"
+        "DeploymentName": "sinjoonk-ggv2"
     }
 }
