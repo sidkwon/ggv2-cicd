@@ -10,7 +10,8 @@ phases:
     commands:
       - echo Build started on `date`
       # - echo `pwd`
-      # - ls -lat
+      - ls -lat artifacts
+      - ls -lat artifacts/com.annakie.Publisher-1.0.0-cloud.json
       - aws greengrassv2 create-component-version --inline-recipe fileb://artifacts/com.annakie.Publisher-1.0.0-cloud.json --region us-east-1
   post_build:
     commands:
