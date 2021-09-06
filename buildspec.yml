@@ -13,4 +13,4 @@ phases:
 
 artifacts:
   files:
-    - '*/*''
+    - target/messageUtil-1.0.jar
