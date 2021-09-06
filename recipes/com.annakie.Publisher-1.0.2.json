@@ -1,0 +1,48 @@
+{
+  "RecipeFormatVersion": "2020-01-25",
+  "ComponentName": "com.annakie.Publisher",
+  "ComponentVersion": "1.0.2",
+  "ComponentDescription": "AHA",
+  "ComponentPublisher": "Sid.K",
+  "ComponentConfiguration": {
+    "DefaultConfiguration": {
+      "TopicName": "sinjoonk/sinjoonk-ggv2-core/topic",
+      "accessControl": {
+        "aws.greengrass.ipc.mqttproxy": {
+          "com.annakie.Publisher:mqttproxy:1": {
+            "policyDescription": "Allows access to publish to sinjoonk/{iot:thingName}/topic topic.",
+            "operations": [
+              "aws.greengrass#PublishToIoTCore",
+              "aws.greengrass#SubscribeToIoTCore"
+            ],
+            "resources": [
+              "*"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Manifests": [
+      {
+         "Platform": {
+            "os": "linux"
+         },
+         "Lifecycle": {
+            "Install": {
+                "RequiresPrivilege": "true",
+                "script": "pip3 install awsiotsdk"
+            },
+            "Run": {
+                "RequiresPrivilege": "true",
+                "script": "python3 {artifacts:path}/publisher.py --thing_name={iot:thingName}\n"
+            }
+         },
+         "Artifacts": [
+            {
+               "URI": "s3://sinjoonk-demo-bucket/artifacts/com.annakie.Publisher/1.0.2/publisher.py"
+            }
+         ]
+      }
+  ]
+}
