@@ -47,7 +47,7 @@ for deployment in deployments_response['deployments']:
             
             components = response['components']
             
-            # If new component version is greater than existing component version, create component version
+            # If new component version is greater than existing component version, create component version...
             if components[component_name]['componentVersion'] < component_version:
                 recipe_file = os.path.join('recipes', component_name + '-' + component_version + '.json')
                 
