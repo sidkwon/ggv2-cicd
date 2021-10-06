@@ -2,6 +2,8 @@
 
 Greengrass V2 CI/CD samples
 - Flow: Github -> Codebuild -> Create ggv2 component version & Create ggv2 deployment
+- CodePipeline: sinjoonk-ggv2-basic
+- CodeBuild project: sinjoonk-ggv2-basic
 
 ## How to deploy new components
 
@@ -24,7 +26,7 @@ Greengrass V2 CI/CD samples
 - BucketName: S3 bucket that stores artifacts
 
 ### Step2 - Local test
-`com.annakie.Publisher`예시, when upgrading ggv2 component version from 1.0.0 to 1.0.1
+Example: `com.annakie.Publisher`, when upgrading ggv2 component version from 1.0.0 to 1.0.1
 1. Test new code (e.g., `python publisher.py`)
 2. Deploy new local ggv2 component by using 
 
@@ -33,4 +35,4 @@ Greengrass V2 CI/CD samples
 2. Create new python code `publisher.py` in the folder
 3. Create new recipe under `recipes` (e.g., `com.annakie.Publisher-1.0.1.json`)
 4. Source code commit to Github
-5. Monitor Codebuild
+5. Monitor CodePipeline/Codebuild

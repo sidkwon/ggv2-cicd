@@ -40,7 +40,7 @@
          },
          "Artifacts": [
             {
-               "URI": "s3://sinjoonk-demo-bucket/artifacts/com.annakie.Publisher/1.0.4/publisher.py"
+               "URI": "s3://sinjoonk-demo-bucket/artifacts/com.annakie.Publisher/1.0.5/publisher.py"
             }
          ]
       }
