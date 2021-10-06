@@ -1,9 +1,12 @@
 {
     "Component": {
         "ComponentName": "com.annakie.Publisher",
-        "ComponentVersion": "1.0.4"
+        "ComponentVersion": "1.0.5"
     },
     "Deployment": {
         "DeploymentName": "sinjoonk-ggv2"
+    },
+    "Bucket": {
+        "BucketName": "sinjoonk-demo-bucket"
     }
 }
