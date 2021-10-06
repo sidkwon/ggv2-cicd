@@ -11,7 +11,7 @@ Greengrass V2 CI/CD samples
     {
         "Component": {
             "ComponentName": "com.annakie.Publisher",
-            "ComponentVersion": "1.0.4"
+            "ComponentVersion": "1.0.0"
         },
         "Deployment": {
             "DeploymentName": "sinjoonk-ggv2"
