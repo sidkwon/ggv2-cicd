@@ -36,3 +36,4 @@ Example: `com.annakie.Publisher`, when upgrading ggv2 component version from 1.0
 3. Create new recipe under `recipes` (e.g., `com.annakie.Publisher-1.0.1.json`)
 4. Source code commit to Github
 5. Monitor CodePipeline/Codebuild
+6. Check if you can see desired message in the `sinjoonk/+/topic` in AWS MQTT client
